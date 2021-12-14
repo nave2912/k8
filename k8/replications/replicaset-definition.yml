@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: myapp-rc
+ labels: 
+  name: myapp-rc
+  app: myapp
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+    type: frontend
+ template:
+  metadata: 
+    name: redis
+    labels:
+      name: redis
+      app: myapp
+      type: frontend
+  spec:
+    containers:
+      - name: redis
+        image: redis  
+          
